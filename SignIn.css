@@ -1,0 +1,114 @@
+body {
+    background-image:url("https://www.google.ie/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwihzpT_ta3XAhUDKsAKHVGhD-sQjRwIBw&url=https%3A%2F%2Fwww.123rf.com%2Fphoto_46735189_set-menu-card-for-restaurants-on-wooden-background.html&psig=AOvVaw1YmkcowbVgQ_V0EO8D4N46&ust=1510176971503759"); /*no-repeat scroll left center transparent;*/
+}
+.container{
+width:100%;
+margin:auto;    
+}
+.container2{
+width:100%;
+margin:auto;    
+}
+h1{
+	text-align:center;
+	font-style:italic;
+}
+.input1 {
+	height:32px;
+    font-size:14pt;
+    display: inline-block;
+    width:90%;
+    position: relative;
+    top: 0.2px;
+	border:2px #e4e4e4 solid;
+    box-shadow:inset 0 1px 2px #000000;
+    -moz-box-shadow:inset 0 1px 2px #000000;
+    -webkit-box-shadow:inset 0 1px 2px #000000;
+    line-height: px;
+    padding-left: 18px;
+	text-align:center;
+	-webkit-border-radius: 50px;
+-moz-border-radius: 50px;
+border-radius: 50px;
+} 
+label {
+    display: inline-block;
+    width: 7em;
+    margin-right: .1em;
+    padding-top: 1em;
+	text-align:left;
+	font-size:20px ;
+	font-style:italic;
+}
+.pull-right{
+	padding-left:80%;
+	text-align:right;
+}
+#btnSignIn{
+	color: #fff;
+    background-color: black;
+    border-color: 
+}
+#btnSignUp1{
+	color: #fff;
+    background-color: black;
+    border-color:
+	display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+	touch-action: manipulation;
+    cursor: pointer;
+	user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+   	
+}
+#btnSignUp{
+	color: #fff;
+    background-color: black;
+    border-color:
+	display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+	touch-action: manipulation;
+    cursor: pointer;
+	user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;  	
+}
+#btnLogOut{
+	color: #fff;
+    background-color: black;
+    border-color: 
+}
+.btn {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: centers;
+    white-space: nowrap;
+    vertical-align: middle;
+	touch-action: manipulation;
+    cursor: pointer;
+	user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
