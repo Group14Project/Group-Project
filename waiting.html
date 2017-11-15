@@ -1,0 +1,160 @@
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	</head>
+	<style>
+	
+	
+		#thediv{ width:500px; height:600px; color:black; float:left;}
+		#thenewdiv{ width:500px; height:600px; color:white; float:left; }
+		.theSpan{ float:right; }
+		.dec-btn{ float:right; height:3%; font-size: 12px; }
+		.add-btn{ float:right; height:3%; font-size: 12px; }
+		.spanPlace{ float:right; }
+		body{
+ background-image: url(http://www.freepptbackgrounds.net/wp-content/uploads/2014/02/Restaurant-Menu-Theme-Backgrounds.jpg);
+ }
+ ul {
+ border-radius: 25px;
+ border: 5px solid #000000;
+ width:75%;
+    background-image: url(http://www.powerpointhintergrund.com/uploads/food-background-13.jpg);
+    padding: 20px;
+}
+
+
+
+ul li {
+    background: #7076AD;
+    margin: 5px;
+}
+	</style>
+
+
+	<body>
+		<div id="thediv">
+			<input list="browse" id="tabNum" placeholder="Table"><br>
+			<datalist id="browse">
+				<option value="1">
+				<option value="2">
+				<option value="3">
+			</datalist>
+
+			<ul id="starter">
+				<h4>STARTERS</h4>
+			</ul>
+			<ul id="main">
+				<h4>MAINS</h4>
+			</ul>
+			<ul id="dessert">
+				<h4>DESSERTS</h4>
+			</ul>
+		</div>
+
+		<div id="thenewdiv">
+			
+				<h4>Order</h4>
+				<input list="browser" id="choice" placeholder="Course"><br>
+				<datalist id="browser">
+					<option value="starter">
+					<option value="main">
+					<option value="dessert">
+				</datalist>
+			<ul id="order">
+			</ul>
+			<input type="button" onclick="start()">
+		</div>
+	</body>
+
+
+	<script src="https://www.gstatic.com/firebasejs/4.5.0/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/4.5.0/firebase-auth.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/4.5.0/firebase-database.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/4.5.0/firebase-firestore.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/4.5.0/firebase-messaging.js"></script>
+	
+	<script>
+		// Initialize Firebase
+		var config = {
+    apiKey: "AIzaSyAI4RD9LoiAism8TuzwmpYRNSMaeGwBwV8",
+    authDomain: "dishedout-99414.firebaseapp.com",
+    databaseURL: "https://dishedout-99414.firebaseio.com",
+    projectId: "dishedout-99414",
+    storageBucket: "dishedout-99414.appspot.com",
+    messagingSenderId: "949450220295"
+  };
+  firebase.initializeApp(config);
+	</script>
+	<script>
+
+		$(document).ready(function(){
+			var rootRef1 = firebase.database().ref().child("roma").child("menu").child("starters");
+			var rootRef2 = firebase.database().ref().child("roma").child("menu").child("mains");
+			var rootRef3 = firebase.database().ref().child("roma").child("menu").child("desserts");
+
+			rootRef1.on("child_added", snap => {
+				var item = snap.child("Name").val();
+				$("#starter").append("<li onclick='addition(\"" + item + "\")'>" + item + "</li>");
+			});
+			rootRef2.on("child_added", snap => {
+				var item = snap.child("Name").val();
+				$("#main").append("<li onclick='addition(\"" + item + "\")'>" + item + "</li>");
+			});
+			rootRef3.on("child_added", snap => {
+				var item = snap.child("Name").val();
+				$("#dessert").append("<li onclick='addition(\"" + item + "\")'>" + item + "</li>");
+			});
+
+		});
+			function add(theItem, theVal){
+					var tableNum = document.getElementById("tabNum").value;
+					var course = document.getElementById("choice").value;
+					if(tableNum <= 3){
+						var addRootRef = firebase.database().ref().child("roma").child("dockets").child(tableNum).child(course); //.child("mains"); .child("desserts");
+						var sendingInfo = addRootRef.child(theItem);
+						sendingInfo.set({
+							Name: theItem,
+							Num: theVal
+						});
+					}
+					else
+						alert("No such table exists");
+			}
+
+
+
+			function addition(theItem){
+				$("#order").append("<span><li>" + theItem + "</li><button class='add-btn' onclick='addrun(\"" + theItem + "\")'>+</button> <span class='spanPlace' id='"+theItem+"'>1</span> <button class='dec-btn' onclick='decrun(\"" + theItem + "\")'>-</button></span>");
+			}
+
+			function addrun(item){
+				var num = document.getElementById(item).innerHTML;
+				num++;
+				document.getElementById(item).innerHTML = num;
+			}
+			function decrun(item){
+				var num = document.getElementById(item).innerHTML;
+				if(num==1){
+					document.getElementById(item).parentElement.remove();
+				}else{
+					num--;
+					document.getElementById(item).innerHTML = num;
+				}
+			}
+			
+
+			function start(){
+				var len = document.getElementById("order").getElementsByTagName("li").length;
+				var firstNode = document.getElementById("order");
+				for(var i = 0; i < len; i++){
+					var item = firstNode.getElementsByTagName("LI")[i].innerHTML;
+					var val = firstNode.getElementsByClassName("spanPlace")[i].innerHTML;
+					add(item, val);
+				}
+				firstNode.innerHTML = "";
+				
+			}
+
+	</script>
+</html>
