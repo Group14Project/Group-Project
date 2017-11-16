@@ -1,11 +1,10 @@
+/* Disclaimer: All Javascript and Firebase Provided By Conor Cohen Farrell*/
 <html>
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	</head>
 	<style>
-	
-	
 		#thediv{ width:500px; height:600px; color:black; float:left;}
 		#thenewdiv{ width:500px; height:600px; color:white; float:left; }
 		.theSpan{ float:right; }
@@ -22,16 +21,11 @@
     background-image: url(http://www.powerpointhintergrund.com/uploads/food-background-13.jpg);
     padding: 20px;
 }
-
-
-
 ul li {
     background: #7076AD;
     margin: 5px;
 }
 	</style>
-
-
 	<body>
 		<div id="thediv">
 			<input list="browse" id="tabNum" placeholder="Table"><br>
@@ -51,7 +45,6 @@ ul li {
 				<h4>DESSERTS</h4>
 			</ul>
 		</div>
-
 		<div id="thenewdiv">
 			
 				<h4>Order</h4>
@@ -67,7 +60,6 @@ ul li {
 		</div>
 	</body>
 
-/* Disclaimer: All Javascript and Firebase Provided By Conor Cohen Farrell*/
 	<script src="https://www.gstatic.com/firebasejs/4.5.0/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/4.5.0/firebase-auth.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/4.5.0/firebase-database.js"></script>
@@ -87,7 +79,6 @@ ul li {
   firebase.initializeApp(config);
 	</script>
 	<script>
-
 		$(document).ready(function(){
 			var rootRef1 = firebase.database().ref().child("roma").child("menu").child("starters");
 			var rootRef2 = firebase.database().ref().child("roma").child("menu").child("mains");
@@ -121,13 +112,9 @@ ul li {
 					else
 						alert("No such table exists");
 			}
-
-
-
 			function addition(theItem){
 				$("#order").append("<span><li>" + theItem + "</li><button class='add-btn' onclick='addrun(\"" + theItem + "\")'>+</button> <span class='spanPlace' id='"+theItem+"'>1</span> <button class='dec-btn' onclick='decrun(\"" + theItem + "\")'>-</button></span>");
 			}
-
 			function addrun(item){
 				var num = document.getElementById(item).innerHTML;
 				num++;
@@ -142,8 +129,6 @@ ul li {
 					document.getElementById(item).innerHTML = num;
 				}
 			}
-			
-
 			function start(){
 				var len = document.getElementById("order").getElementsByTagName("li").length;
 				var firstNode = document.getElementById("order");
@@ -152,9 +137,7 @@ ul li {
 					var val = firstNode.getElementsByClassName("spanPlace")[i].innerHTML;
 					add(item, val);
 				}
-				firstNode.innerHTML = "";
-				
+				firstNode.innerHTML = "";	
 			}
-
 	</script>
 </html>
